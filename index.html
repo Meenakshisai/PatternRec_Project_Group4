@@ -3,47 +3,65 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Blackberry & Lime Classifier</title>
+  <title>🍇 Blackberry & Lime Classifier</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      margin: 2rem;
-      line-height: 1.6;
-      color: #333;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fefefe;
+      color: #2c2c2c;
+      padding: 2rem;
+      line-height: 1.7;
     }
     h1, h2, h3 {
-      color: #006400;
+      font-weight: 700;
+    }
+    h1 {
+      color: #ff1493; /* deep pink */
+    }
+    h2 {
+      color: #4169e1; /* royal blue */
+    }
+    h3 {
+      color: #2e8b57; /* sea green */
     }
     a {
-      color: #1e90ff;
+      color: #d2691e;
       text-decoration: none;
     }
-    code, pre {
+    a:hover {
+      text-decoration: underline;
+    }
+    pre {
       background-color: #f4f4f4;
-      padding: 0.5rem;
+      padding: 1rem;
       border-radius: 5px;
-      display: block;
       overflow-x: auto;
     }
     ul {
-      margin-left: 1.5rem;
+      margin-left: 2rem;
+    }
+    img {
+      max-width: 100%;
+      margin: 1rem 0;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
   </style>
 </head>
 <body>
 
-  <h1>CSE 455/555 Term Project Report</h1>
-  <h2>Visual Classification of Blackberry and Lime with Variation Detection using Transfer Learning</h2>
+  <h1>🍇 CSE 455/555 Term Project Report</h1>
+  <h2>🧠 Visual Classification of Blackberry and Lime using Transfer Learning</h2>
   <p><strong>Team Role:</strong> CV Engineer – Rishi Shanthan Bhagavatham</p>
 
-  <h2>1. Introduction</h2>
-  <p>This project focuses on using computer vision to classify images of produce—specifically blackberries and limes—and their contextual presentation (e.g., whole, halved, in a container, etc.). The project demonstrates real-world relevance in retail, automation, and agricultural technologies using transfer learning on state-of-the-art deep learning models.</p>
+  <h2>📌 1. Introduction</h2>
+  <p>This project focuses on visually identifying fruits—specifically blackberries and limes—and classifying them further by their presentation. Using deep learning and transfer learning, we build a smart classifier and deploy it for interactive use.</p>
 
-  <h2>2. Dataset Preparation</h2>
-  <h3>2.1 Data Collection</h3>
-  <p>Images were captured manually using a smartphone to simulate real-world diversity. Each image was taken in various lighting and contextual conditions to improve generalizability.</p>
+  <h2>🗃️ 2. Dataset Preparation</h2>
+  <h3>📷 2.1 Image Collection</h3>
+  <p>Images were captured manually to simulate real-world variations. They included cluttered backgrounds, natural light, and multiple contexts to ensure model robustness.</p>
 
-  <h3>2.2 Data Variations</h3>
+  <h3>🌀 2.2 Data Variations</h3>
   <ul>
     <li>Halved</li>
     <li>In Context</li>
@@ -53,44 +71,43 @@
     <li>Whole</li>
   </ul>
 
-  <h3>2.3 Folder Structure</h3>
-  <p>Images were sorted into class-wise folders for both binary produce classification and 6-class variation classification.</p>
+  <h3>🗂️ 2.3 Folder Structure & Renaming</h3>
+  <p>Images were renamed uniformly and sorted into train/val/test sets with an approximate 70:20:10 split. This was automated to ensure reproducibility.</p>
 
-  <h3>2.4 Renaming and Splits</h3>
-  <p>Images were renamed programmatically for consistency. Data was split as 70% training, 20% validation, and 10% testing.</p>
-
-  <h2>3. Model Development</h2>
-  <h3>3.1 Tools Used</h3>
+  <h2>🛠️ 3. Model Development</h2>
+  <h3>💻 3.1 Tools</h3>
   <ul>
     <li>Python, PyTorch, Torchvision</li>
-    <li>VS Code + Jupyter Notebooks</li>
-    <li>Gradio and Hugging Face Spaces</li>
+    <li>VS Code Jupyter Notebooks</li>
+    <li>Gradio & Hugging Face Spaces</li>
   </ul>
 
-  <h3>3.2 Transfer Learning with ResNet-18</h3>
-  <p>The pre-trained ResNet-18 model was used. The last layer was fine-tuned to output either 2 or 6 classes based on task.</p>
+  <h3>⚙️ 3.2 Architecture</h3>
+  <p>We fine-tuned a ResNet-18 pre-trained model. The final fully-connected layer was replaced to output either 2 or 6 classes based on the classification task.</p>
 
-  <h3>3.3 Training</h3>
-  <p>Loss function: <code>CrossEntropyLoss</code> <br> Optimizer: <code>Adam</code> <br> Epochs: 5</p>
+  <h3>🎯 3.3 Training Parameters</h3>
+  <p><strong>Loss:</strong> CrossEntropyLoss <br>
+     <strong>Optimizer:</strong> Adam <br>
+     <strong>Epochs:</strong> 5</p>
 
-  <h2>4. Evaluation Results</h2>
-  <h3>4.1 Produce Classifier</h3>
+  <h2>📈 4. Evaluation Results</h2>
+  <h3>🍋 4.1 Produce Classifier</h3>
   <pre><code>
-Classification Report:
-
               precision    recall  f1-score   support
   blackberry       1.00      1.00      1.00       450
         lime       1.00      1.00      1.00       451
-
-    accuracy                           1.00       901
-   macro avg       1.00      1.00      1.00       901
-weighted avg       1.00      1.00      1.00       901
+     accuracy                           1.00       901
+    macro avg       1.00      1.00      1.00       901
+ weighted avg       1.00      1.00      1.00       901
   </code></pre>
 
-  <h3>4.2 Variation Classifier</h3>
-  <pre><code>
-Classification Report:
+  <h4>🧾 Confusion Matrix:</h4>
+  <a href="https://raw.githubusercontent.com/brs13/blackberry-lime-classifier/main/assets/produce_confusion_matrix.png" target="_blank">
+    <img src="https://raw.githubusercontent.com/brs13/blackberry-lime-classifier/main/assets/produce_confusion_matrix.png" alt="Produce Confusion Matrix"/>
+  </a>
 
+  <h3>🧺 4.2 Variation Classifier</h3>
+  <pre><code>
                 precision    recall  f1-score   support
         Halved       0.99      0.99      0.99       151
     In Context       0.99      0.99      0.99       150
@@ -98,35 +115,35 @@ In a Container       1.00      1.00      1.00       150
   Single Berry       0.99      1.00      1.00       150
    Small Group       1.00      0.99      1.00       150
          Whole       0.99      1.00      0.99       150
-
-      accuracy                           0.99       901
-     macro avg       0.99      0.99      0.99       901
-  weighted avg       0.99      0.99      0.99       901
+     accuracy                           0.99       901
+    macro avg       0.99      0.99      0.99       901
+ weighted avg       0.99      0.99      0.99       901
   </code></pre>
 
-  <h2>5. Web App Deployment</h2>
-  <h3>5.1 Gradio Interface</h3>
-  <p>A web interface using Gradio allows users to upload any image and get predictions for produce type and variation class.</p>
+  <h4>🧾 Confusion Matrix:</h4>
+  <a href="https://raw.githubusercontent.com/brs13/blackberry-lime-classifier/main/assets/variation_confusion_matrix.png" target="_blank">
+    <img src="https://raw.githubusercontent.com/brs13/blackberry-lime-classifier/main/assets/variation_confusion_matrix.png" alt="Variation Confusion Matrix"/>
+  </a>
 
-  <h3>5.2 Hosted Live At</h3>
-  <p><a href="https://huggingface.co/spaces/brs13/blackberry-lime-classifier" target="_blank">Hugging Face Space</a></p>
+  <h2>🚀 5. Web App Deployment</h2>
+  <p>Using <strong>Gradio</strong>, we developed a simple web app where users can upload an image and get both produce and variation predictions.</p>
 
-  <h3>5.3 GitHub Repository</h3>
-  <p><a href="https://github.com/brs13/blackberry-lime-classifier" target="_blank">GitHub Source Code</a></p>
+  <p>🔗 <strong>Live Demo:</strong> <a href="https://huggingface.co/spaces/brs13/blackberry-lime-classifier" target="_blank">Hugging Face Space</a></p>
+  <p>💻 <strong>Source Code:</strong> <a href="https://github.com/brs13/blackberry-lime-classifier" target="_blank">GitHub Repository</a></p>
 
-  <h2>6. Conclusion</h2>
-  <p>We successfully implemented a two-stage image classification system using deep learning and transfer learning. Both classifiers achieved very high accuracy, with the system deployed for public usage online. This project highlighted the power of data-driven pipelines and practical ML deployment.</p>
+  <h2>🧾 6. Conclusion</h2>
+  <p>This project successfully demonstrated a two-stage image classification system with strong performance. The application is robust, scalable, and has real-world potential in grocery tech, farming, and inventory automation.</p>
 
-  <h2>7. Future Work</h2>
+  <h2>🧠 7. Future Enhancements</h2>
   <ul>
-    <li>Add more produce classes like strawberry or orange</li>
-    <li>Use Grad-CAM for model explainability</li>
-    <li>Real-time camera integration</li>
-    <li>Enhance dataset diversity with augmentation</li>
+    <li>Expand dataset with more fruits 🍓</li>
+    <li>Add Grad-CAM for model explainability 📊</li>
+    <li>Enable real-time camera stream integration 📷</li>
+    <li>Experiment with MobileNet for edge devices 📱</li>
   </ul>
 
-  <h2>8. Acknowledgements</h2>
-  <p>This project was completed as part of CSE 455/555 coursework at the University at Buffalo. We sincerely thank our instructors and the open-source community.</p>
+  <h2>🙏 8. Acknowledgements</h2>
+  <p>Thanks to CSE 455/555 course instructors and peers at the University at Buffalo for providing continuous support and guidance through this enriching journey!</p>
 
 </body>
 </html>
