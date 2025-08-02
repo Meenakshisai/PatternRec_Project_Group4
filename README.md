@@ -30,7 +30,7 @@ The app uses **transfer learning** via pre-trained **ResNet-18**, and is deploye
   - Small Group
   - Whole
 
-Total images: ~1800  
+Total images: ~6000  
 Split: 70% Train, 20% Validation, 10% Test
 
 ---
